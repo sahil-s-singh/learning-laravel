@@ -17,11 +17,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
-    Route::middleware('test')->apiResource('customers', CustomerController::class);
+Route::group(['namespace' => 'App\Http\Controllers'], function() {
+    Route::middleware('test')->apiResource('user', UserController::class);
 });
 
-
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
-    Route::middleware('test')->apiResource('contacts', ContactController::class);
+Route::group(['namespace' => 'App\Http\Controllers'], function() {
+    Route::apiResource('comment', CommentController::class);
 });

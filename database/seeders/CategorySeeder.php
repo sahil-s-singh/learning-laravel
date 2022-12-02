@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Customer;
-class CustomerSeeder extends Seeder
+use App\Models\Category;
+
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,8 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        Customer::factory()->count(5)->hasInvoices(2)->create();
-        Customer::factory()->count(5)->create();
-        Customer::factory()->count(5)->hasContacts(6)->create();
+        Category::create(['name'=> "category-1"]);
+        Category::create(['name'=> "category-2"]);
+        Category::create(['name'=> "category-3"]);
     }
 }

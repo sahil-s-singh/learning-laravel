@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\CategoryComment;
 
-class InvoiceSeeder extends Seeder
+class CategoryCommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class InvoiceSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CategoryComment::factory()->count(20)->create();
     }
 }
