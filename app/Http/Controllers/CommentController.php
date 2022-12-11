@@ -7,6 +7,11 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Customer::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +19,8 @@ class CommentController extends Controller
      */
     public function index()
     {
+
+        // $this->authorize('viewAny', Comment::class);
        return Comment::with(['categories'])->get();
     }
 
@@ -36,7 +43,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $comment = new Comment();
-        $comment->user_id   = $request->user_id;
+        $comment->user_id = $request->user_id;
         $comment->title = $request->title;
         $comment->content = $request->content;
         $comment->save();

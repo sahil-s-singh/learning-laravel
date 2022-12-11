@@ -10,7 +10,8 @@ use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Hash,
-    Auth
+    Auth,
+    Gate
 };
 use App\Models\User;
 
@@ -37,6 +38,14 @@ class AuthController extends Controller
 
     public function register(StoreUserRequest $request)
     {
+
+        if(Gate::allows('register-auth')){
+            error_log('register-admin');
+        } else {
+            error_log('register-admin-false');
+        };
+
+        
         $request->validated($request->all());
 
         $user = User:: create([
