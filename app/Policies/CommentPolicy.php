@@ -19,7 +19,7 @@ class CommentPolicy
     public function viewAny(User $user)
     {
         error_log($user);
-       return false;
+       return true;
     }
 
     /**

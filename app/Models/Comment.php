@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'content', 'categories'];
+    protected $fillable = ['user_id', 'title', 'content', 'categories', 'image_id'];
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -17,5 +17,9 @@ class Comment extends Model
 
     public function categories() {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function commentable() {
+        return $this->morphTo(Image::class);
     }
 }

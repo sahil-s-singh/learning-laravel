@@ -3,18 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{
-    Comment,
-    Image
-};
+use App\Models\Image;
 
-class CommentController extends Controller
+class ImageController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->authorizeResource(Customer::class);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +14,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-
-        // $this->authorize('viewAny', Comment::class);
-       return Comment::with(['categories'])->get();
+        //
     }
 
     /**
@@ -45,17 +35,10 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $comment = new Comment();
-        $comment->user_id = $request->user_id;
-        $comment->title = $request->title;
-        $comment->content = $request->content;
-        $comment->save();
-        $comment->categories()->attach(json_decode($request->categories));
-
-        $image = Image::find($comment->image_id);
-        $image->attach()->$comment;
-      
-        return "updated";
+        $image = new Image();
+        $image->url = $request->url;
+        $image->save();
+        $image->categories()->attach(json_decode($request->categories));
     }
 
     /**
@@ -87,14 +70,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, comment $comment)
+    public function update(Request $request, $id)
     {
-        $comment->user_id   = $request->user_id;
-        $comment->title = $request->title;
-        $comment->content = $request->content;
-        $comment->update();
-        $comment->categories()->sync(json_decode($request->categories));
-        return "updated";
+        //
     }
 
     /**
@@ -103,10 +81,8 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        $comment->delete();
-        return 'deleted';
-
+        //
     }
 }
