@@ -9,7 +9,7 @@ jobs:
 
   DEVV:
     runs-on: ubuntu-latest
-    envionment: test
+    environment: test
     steps:
       - uses: action/checkout@v2
 
