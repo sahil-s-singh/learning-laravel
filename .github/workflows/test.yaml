@@ -1,0 +1,18 @@
+
+
+name: test
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  DEVV:
+    runs-on: ubuntu-latest
+    envionment: test
+    steps:
+      - uses: action/checkout@v2
+
+      - name: run a script
+        run: |
+          echo "something"
